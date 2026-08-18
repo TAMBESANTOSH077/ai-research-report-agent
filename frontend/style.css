@@ -1,0 +1,270 @@
+* {
+    box-sizing: border-box;
+}
+
+
+body {
+
+    margin: 0;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    background:
+        #f4f7fb;
+
+    color:
+        #172033;
+}
+
+
+.container {
+
+    width: 90%;
+
+    max-width: 1000px;
+
+    margin:
+        40px auto;
+}
+
+
+header {
+
+    text-align: center;
+
+    margin-bottom: 30px;
+}
+
+
+header h1 {
+
+    margin-bottom: 10px;
+
+    font-size: 34px;
+}
+
+
+header p {
+
+    color:
+        #667085;
+
+    font-size: 16px;
+}
+
+
+.card {
+
+    background:
+        white;
+
+    padding: 25px;
+
+    margin-bottom: 20px;
+
+    border-radius: 12px;
+
+    box-shadow:
+        0 4px 15px
+        rgba(0, 0, 0, 0.08);
+}
+
+
+.card h2 {
+
+    margin-top: 0;
+
+    margin-bottom: 20px;
+}
+
+
+textarea {
+
+    width: 100%;
+
+    min-height: 150px;
+
+    padding: 15px;
+
+    border:
+        1px solid #d0d5dd;
+
+    border-radius: 8px;
+
+    resize: vertical;
+
+    font-size: 15px;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+}
+
+
+button {
+
+    margin-top: 15px;
+
+    padding:
+        12px 25px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background:
+        #2563eb;
+
+    color: white;
+
+    font-size: 16px;
+
+    cursor: pointer;
+}
+
+
+button:hover {
+
+    background:
+        #1d4ed8;
+}
+
+
+button:disabled {
+
+    background:
+        #94a3b8;
+
+    cursor:
+        not-allowed;
+}
+
+
+.status {
+
+    margin-top: 15px;
+
+    padding: 12px;
+
+    border-radius: 7px;
+}
+
+
+.status.loading {
+
+    background:
+        #fff7ed;
+
+    color:
+        #9a3412;
+}
+
+
+.status.success {
+
+    background:
+        #ecfdf3;
+
+    color:
+        #027a48;
+}
+
+
+.status.error {
+
+    background:
+        #fef3f2;
+
+    color:
+        #b42318;
+}
+
+
+ol {
+
+    padding-left: 25px;
+}
+
+
+li {
+
+    margin-bottom: 12px;
+
+    line-height: 1.5;
+}
+
+
+.execution-item {
+
+    display: flex;
+
+    gap: 10px;
+
+    padding: 12px;
+
+    margin-bottom: 8px;
+
+    background:
+        #f8fafc;
+
+    border-radius: 7px;
+}
+
+
+.check {
+
+    color:
+        #16a34a;
+
+    font-weight:
+        bold;
+}
+
+
+.failure-item {
+
+    padding: 12px;
+
+    margin-bottom: 8px;
+
+    background:
+        #fff7ed;
+
+    border-left:
+        4px solid #f97316;
+
+    border-radius: 5px;
+}
+
+
+.no-failure {
+
+    color:
+        #16a34a;
+}
+
+
+.report {
+
+    white-space:
+        pre-wrap;
+
+    line-height:
+        1.7;
+
+    background:
+        #f8fafc;
+
+    padding:
+        20px;
+
+    border-radius:
+        8px;
+
+    border:
+        1px solid #e2e8f0;
+}

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>AI Research & Report Agent</title>
+
+    <link
+        rel="stylesheet"
+        href="/style.css"
+    >
+
+</head>
+
+
+<body>
+
+    <div class="container">
+
+        <header>
+
+            <h1>AI Research & Report Agent</h1>
+
+            <p>
+                Give the agent a goal and let it plan,
+                select tools and generate a report.
+            </p>
+
+        </header>
+
+
+        <!-- GOAL -->
+
+        <section class="card">
+
+            <h2>Agent Goal</h2>
+
+            <textarea
+                id="goal"
+                placeholder="Example: Research three electric vehicle companies, compare their products and generate a report."
+            ></textarea>
+
+
+            <button
+                id="runBtn"
+                onclick="runAgent()"
+            >
+                Run Agent
+            </button>
+
+
+            <div
+                id="status"
+                class="status"
+            >
+            </div>
+
+        </section>
+
+
+        <!-- PLAN -->
+
+        <section
+            class="card"
+            id="planSection"
+            style="display:none;"
+        >
+
+            <h2>Agent Plan</h2>
+
+            <ol id="plan"></ol>
+
+        </section>
+
+
+        <!-- EXECUTION -->
+
+        <section
+            class="card"
+            id="executionSection"
+            style="display:none;"
+        >
+
+            <h2>Execution</h2>
+
+            <div id="execution"></div>
+
+        </section>
+
+
+        <!-- FAILURES -->
+
+        <section
+            class="card"
+            id="failureSection"
+            style="display:none;"
+        >
+
+            <h2>Failures & Recovery</h2>
+
+            <div id="failures"></div>
+
+        </section>
+
+
+        <!-- REPORT -->
+
+        <section
+            class="card"
+            id="reportSection"
+            style="display:none;"
+        >
+
+            <h2>Final Report</h2>
+
+            <div
+                id="report"
+                class="report"
+            ></div>
+
+        </section>
+
+    </div>
+
+
+    <script src="/script.js"></script>
+
+</body>
+
+</html>
