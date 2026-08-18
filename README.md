@@ -1,191 +1,143 @@
 AI Research & Report Agent
 
-An AI-powered research agent that takes a user's goal, creates a plan, selects the appropriate tool, executes the task, handles failures, and generates a structured final report.
+An AI-powered research agent that takes a user's goal, creates an execution plan, selects appropriate tools, performs research/calculations, handles tool failures, and generates a structured final report.
 
 Problem Statement
 
-When a user wants to research a company or compare information, they normally need to manually:
+When a user wants information about a company or a topic, they normally need to search multiple sources, compare information, perform calculations, and prepare a report manually.
 
-Search for information.
-Decide what information is relevant.
-Perform calculations if required.
-Organize the findings.
-Create a final report.
+The goal of this project is to build an AI agent that can break a user's goal into smaller steps and execute those steps using appropriate tools.
 
-The goal of this project is to automate this workflow using an AI agent with planning and tool selection.
+For example:
+
+"Research Tesla and give me a short report about the company and its products."
+
+The agent plans the task, selects a research tool, collects information, and generates a report.
 
 Main Goal
 
-The main goal is to build an agent that can take a natural-language goal and decide what steps and tools are required to complete it.
+The main goal is to demonstrate an AI agent workflow:
 
-Example:
+User Goal
+   ↓
+Planning
+   ↓
+Tool Selection
+   ↓
+Tool Execution
+   ↓
+Result Evaluation
+   ↓
+Failure Recovery
+   ↓
+Final Report
 
-User:
-Research Tesla and give me a short report about the company and its products.
+The project focuses on agent decision-making, rather than simply generating an answer with an LLM.
 
-
-        ↓
-
-
-AI Agent
-
-
-        ↓
-
-
-Create Plan
-        ↓
-Select Tool
-        ↓
-Search Company
-        ↓
-Collect Results
-        ↓
-Generate Report
-What I Built
-
-The system contains:
-
-AI-based planning
+Key Features
+AI-based task planning
 Tool selection
 Company research
 Calculator tool
 Report generation
-Failure handling
-Simple web interface
+Failure detection
+Recovery handling
+Structured execution history
 FastAPI backend
+Simple web frontend
 Gemini API integration
+
+
 Architecture
-                 USER
-                   |
-                   v
-             Web Frontend
-                   |
-                   v
-             FastAPI Backend
-                   |
-                   v
-              AI Agent
-                   |
-          +--------+--------+
-          |                 |
-          v                 v
-       Planner          Tool Selection
-                            |
-                 +----------+----------+
-                 |          |           |
-                 v          v           v
-              Search    Calculator   Report
-                 |          |           |
-                 +----------+-----------+
-                            |
-                            v
+                    USER
+                     |
+                     v
+              Web Frontend
+                     |
+                     v
+              FastAPI Backend
+                     |
+                     v
+                AI Agent
+                     |
+             +-------+-------+
+             |               |
+             v               v
+          Planner        Tool Selection
+                             |
+                 +-----------+-----------+
+                 |           |             |
+                 v           v             v
+              Search     Calculator     Report
+                 |           |             |
+                 +-----------+-------------+
+                             |
+                             v
                        Tool Results
-                            |
-                            v
+                             |
+                             v
+                     Result Evaluation
+                             |
+                      +------+------+
+                      |             |
+                    Useful      Failure
+                      |             |
+                      |         Recovery
+                      |             |
+                      +------+------+
+                             |
+                             v
                        Final Report
 Agent Pipeline
-User Goal
-   ↓
-Create Plan
-   ↓
-Understand Required Task
-   ↓
-Select Tool
-   ↓
-Execute Tool
-   ↓
-Check Result
-   ↓
-Handle Failure
-   ↓
-Generate Final Report
-Example
-Input
-Research TCS and give me a short report.
-Agent Plan
-1. Research TCS company information
-2. Collect relevant information
-3. Organize the findings
-4. Generate a short report
-Tool Selection
+1. User provides a goal
+
+Example:
+
+Research Tesla and give me a short report about the company and its products.
+2. Agent creates a plan
+
+Example:
+
+1. Research Tesla's company information
+2. Identify Tesla's main products
+3. Organize the collected information
+4. Generate a final report
+3. Tool selection
+
+The agent determines which tool is required.
+
+Available tools:
+
 search_company
-Final Output
-AI Research Report
-
-
-Goal:
-Research TCS and give me a short report.
-
-
-Research Results:
-TCS is a technology services and consulting company.
-
-
-Products / Services:
-- IT services
-- Consulting
-- Digital solutions
-
-
-Conclusion:
-TCS is a major technology services company.
-Tools
-1. Search Company
-
-Used when the agent needs company information.
-
-Example:
-
-search_company("Tesla")
-2. Calculator
-
-Used when the user's goal requires numerical calculations.
-
-Example:
-
-Calculate the difference between 500 and 350.
-
-The agent can select:
-
 calculator
-3. Report Generator
+report_generator
+4. Tool execution
 
-Used after collecting information.
+The selected tool performs the required operation.
 
-It converts the tool results into a structured report.
+5. Failure handling
 
-Failure Recovery
-
-The system also demonstrates failure handling.
-
-For example, if a company search fails:
-
-Search
-   ↓
-Failure
-   ↓
-Record failure
-   ↓
-Continue safely
-   ↓
-Generate available result
+If a tool fails, the agent records the failure and attempts the defined recovery path.
 
 Example:
 
-Search failed: BYD
+Search Tesla
+     ↓
+Success
 
-Instead of crashing the complete application, the agent records the failure.
+or:
 
-Technology Stack
-Python
-FastAPI
-Google Gemini API
-HTML
-CSS
-JavaScript
-Uvicorn
-python-dotenv
+Search BYD
+     ↓
+Failure
+     ↓
+Record failure
+     ↓
+Continue / recover
+6. Final report
+
+The collected results are passed to the report-generation component.
+
 Project Structure
 agent-system/
 │
@@ -215,165 +167,218 @@ agent-system/
 ├── .env.example
 ├── .gitignore
 └── README.md
-Installation
+Technology Stack
+Backend
+Python
+FastAPI
+Uvicorn
+AI
+Google Gemini API
+Frontend
+HTML
+CSS
+JavaScript
+Development
+Git
+GitHub
+Virtual Environment
+Example
+Input
+Research Tesla and give me a short report about the company and its products.
+Agent Plan
+1. Research Tesla
+2. Identify Tesla products
+3. Organize research information
+4. Generate final report
+Execution
+✓ Research Tesla
+✓ Identify products
+✓ Organize information
+✓ Generate report
+Output
+AI Research Report
 
-Clone the repository:
 
-git clone https://github.com/YOUR_USERNAME/ai-research-report-agent.git
+Goal:
+Research Tesla and give me a short report about the company and its products.
 
-Go into the project:
 
-cd ai-research-report-agent
+Research Results:
+...
 
-Create a virtual environment:
 
-python -m venv .venv
+Conclusion:
+...
+Failure Recovery
 
-Activate it on Windows:
+The project intentionally demonstrates what happens when a tool fails.
 
-.venv\Scripts\activate
+For example:
 
-Install dependencies:
+User Goal
+   ↓
+Agent Plan
+   ↓
+Search Company
+   ↓
+Search Failure
+   ↓
+Failure Recorded
+   ↓
+Recovery Logic
+   ↓
+Continue Execution
 
-pip install -r requirements.txt
-Environment Variables
+This is important because real AI agents cannot assume that every external tool will always work.
 
-Create a .env file locally:
+Why Use an Agent?
 
-GEMINI_API_KEY=your_api_key_here
+A normal LLM application can follow:
 
-Do not upload .env to GitHub.
+Question → LLM → Answer
 
-Only upload:
+This project uses:
 
-.env.example
+Goal
+ ↓
+Plan
+ ↓
+Decide
+ ↓
+Use Tool
+ ↓
+Evaluate
+ ↓
+Recover
+ ↓
+Report
 
-Example:
+The agent therefore has a structured workflow for completing a task instead of simply generating a response.
 
-GEMINI_API_KEY=your_api_key_here
-Run the Application
-
-Start the FastAPI server:
-
+API
+Start the server
 uvicorn app.main:app --reload
 
-Open the application:
+Application:
 
 http://127.0.0.1:8000/
 
 FastAPI documentation:
 
 http://127.0.0.1:8000/docs
-Test Examples
-Test 1 — Company Research
-Research Tesla and give me a short report.
+Environment Variables
 
-Expected:
 
-Plan
-↓
-Search Tesla
-↓
-Generate Report
-Test 2 — TCS
-Research TCS and give me a report.
 
-Expected:
 
-Plan
-↓
-Identify TCS
-↓
-Search
-↓
-Generate Report
-Test 3 — Calculation
-Calculate the difference between 500 and 350.
 
-Expected:
+Installation
 
+Clone the repository:
+
+
+
+Move into the project:
+
+
+
+Create virtual environment:
+
+python -m venv .venv
+
+Activate on Windows:
+
+.venv\Scripts\activate
+
+Install dependencies:
+
+pip install -r requirements.txt
+
+Run:
+
+uvicorn app.main:app --reload
+Example Use Cases
+
+The agent can be used for goals such as:
+
+Research Tesla and prepare a short report.
+Research TCS and summarize the company.
+Calculate the difference between two values.
+Prepare a structured report from the collected information.
+
+The system is designed so that additional tools can be added later without changing the entire agent architecture.
+
+Advantages
+1. Modular
+
+Planning, tools, LLM services, and recovery are separated.
+
+2. Extensible
+
+New tools can be added easily.
+
+For example:
+
+Search Tool
 Calculator
-↓
-150
-Test 4 — Failure
-Research BYD and give me a report.
+Report Generator
+     +
+Email Tool
+Database Tool
+Weather Tool
+3. Automated
 
-If the search tool fails, the agent records the failure instead of silently pretending that the information was retrieved.
+The agent can decide the execution flow based on the user's goal.
 
-Why I Built This
+4. Failure Handling
 
-The main idea is to move from a simple chatbot to an agent that can decide how to solve a task.
+Tool failures are recorded instead of silently ignored.
 
-A normal chatbot mainly does:
+5. Reusable Architecture
 
-Question
-   ↓
-Answer
+The same architecture can be adapted to different agent-based applications.
 
-This project does:
+Limitations
+Company information is currently limited by the available search/data implementation.
+Tool selection is partially rule-based in the current implementation.
+Gemini API usage is subject to API quotas and limits.
+The system is a demonstration project rather than a production research platform.
+External tools can fail or return incomplete information.
+Future Improvements
+
+Possible improvements include:
+
+Real web search integration
+More intelligent tool selection
+LangGraph-based workflow
+Persistent agent state
+More advanced recovery strategies
+Multiple research sources
+Source citations
+Parallel tool execution
+Human approval for sensitive actions
+Long-term memory
+Production monitoring
+Key Learning
+
+This project demonstrates how an AI agent can transform a high-level user goal into an executable workflow.
 
 Goal
  ↓
 Plan
  ↓
-Tool Selection
+Choose
  ↓
-Tool Execution
+Execute
  ↓
-Failure Handling
+Evaluate
+ ↓
+Recover
  ↓
 Report
 
-This makes the system more suitable for tasks where multiple steps and tools are required.
+The main idea is to move from a simple LLM question-answer system toward a more structured AI agent system capable of planning and using tools.
 
-Advantages
-Reduces manual research work.
-Breaks complex goals into smaller steps.
-Uses different tools for different tasks.
-Can handle tool failures.
-Produces a structured final report.
-Modular design makes new tools easier to add.
-Limitations
+Conclusion
 
-The current project is a demonstration rather than a full production research platform.
-
-The company search tool currently uses a limited set of company data, so it does not provide unrestricted real-time web research.
-
-The system also depends on the availability and quota of the Gemini API.
-
-Future Improvements
-
-Possible improvements include:
-
-Real web search
-More research tools
-Multiple sources
-Source citations
-Vector database
-Long-term agent memory
-Better planning
-Parallel tool execution
-More advanced recovery strategies
-Production authentication
-Persistent execution history
-Key Learning
-
-The main learning from this project is that an AI agent is not simply an LLM generating an answer.
-
-An agent can:
-
-Understand the goal
-      ↓
-Plan the task
-      ↓
-Choose a tool
-      ↓
-Execute the tool
-      ↓
-Handle failure
-      ↓
-Use the result
-      ↓
-Produce the final answer
-
-This project demonstrates that basic agent architecture using a practical research-and-report use case.
+The AI Research & Report Agent demonstrates a modular approach to building an AI agent that can plan tasks, select tools, execute operations, handle failures, and produce a final report.
