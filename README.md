@@ -97,6 +97,8 @@ Research Tesla and give me a short report about the company and its products.
 
 Example:
 
+
+
 1. Research Tesla's company information
 2. Identify Tesla's main products
 3. Organize the collected information
