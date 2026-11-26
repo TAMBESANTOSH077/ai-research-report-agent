@@ -5,6 +5,8 @@ An AI-powered research agent that takes a user's goal, creates an execution plan
 Problem Statement
 When a user wants information about a company or a topic, they normally need to search multiple sources, compare information, perform calculations, and prepare a report manually.
 
+
+
 The goal of this project is to build an AI agent that can break a user's goal into smaller steps and execute those steps using appropriate tools.
 
 For example:
